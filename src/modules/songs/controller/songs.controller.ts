@@ -5,7 +5,7 @@ import { SongDTO } from '../dto/create-song-dts';
 import { Song } from '../entity/songs.entity';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { Pagination } from 'nestjs-typeorm-paginate';
-import { UserJwtGuard } from 'src/modules/auth/users-jwt-guards';
+import { SongJwtGuard } from 'src/modules/auth/song-jwt-guards';
 
 @Controller('songs')
 export class SongsController {
@@ -18,14 +18,13 @@ export class SongsController {
     }
 
     @Post()
-    @UseGuards(UserJwtGuard)
     create(
         @Body() createSong: SongDTO
     ): Promise<Song> {
         return this.songsService.create(createSong)
     }
     @Get()
-    @UseGuards(UserJwtGuard)
+    @UseGuards(SongJwtGuard)
     findAll(
         @Query('page', new DefaultValuePipe(1), ParseIntPipe)
         page: number = 1,
@@ -40,14 +39,14 @@ export class SongsController {
     }
 
     @Get(':id')
-    @UseGuards(UserJwtGuard)
+    @UseGuards(SongJwtGuard)
     findOne(
         @Param('id',ParseIntPipe) song_id: number) : Promise<Song> {
         return this.songsService.findOne(song_id)
     }
 
     @Put(':id')
-    @UseGuards(UserJwtGuard)
+    @UseGuards(SongJwtGuard)
     update(
         @Param('id', ParseIntPipe) song_id: number,
         @Body() updateReq : SongDTO
@@ -56,7 +55,7 @@ export class SongsController {
     }
 
     @Delete(':id')
-    @UseGuards(UserJwtGuard)
+    @UseGuards(SongJwtGuard)
     delete(@Param('id',ParseIntPipe) song_id: number) : Promise<DeleteResult> {
         return this.songsService.delete(song_id)
     }

@@ -40,8 +40,23 @@ export class SongsService {
         return this.songsRepository.find()
     }
 
-    findOne(song_id: number) : Promise<Song> {
-        return this.songsRepository.findOneBy({song_id})
+    async findOne(song_id: number) : Promise<Song> {
+        // return this.songsRepository.findOneBy({song_id})
+
+        const song = await this.songsRepository.findOneBy({ song_id });
+        if (!song) {
+            throw new Error(`Song with ID ${song_id} not found`);
+        }
+        console.log(`Finding song with ID: ${song}`);
+        return song;
+        
+    }
+
+    findByUser(user_id: number) : Promise<Song[]> {
+        return this.songsRepository.find({
+            where: { users: { user_id } },
+            relations: ['users'], 
+        });
     }
 
     delete(song_id: number) : Promise<DeleteResult> {

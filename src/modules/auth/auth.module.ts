@@ -9,6 +9,7 @@ import { authConstants } from './auth.constants';
 import passport from 'passport';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt-strategy';
+import { SongsService } from '../songs/service/songs.service';
 
 @Module({
   imports: [UserModule,

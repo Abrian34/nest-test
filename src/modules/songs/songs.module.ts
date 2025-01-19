@@ -9,19 +9,7 @@ import { Song } from './entity/songs.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Song])],
   controllers: [SongsController],
-  providers: [SongsService]
+  providers: [SongsService],
+  exports: [SongsService]
 })
-export class SongsModule {
-
-    private readonly songs = []
-
-    create(songs) {
-        this.songs.push(songs);
-        return this.songs
-    }
-
-    findAll() {
-        // throw new error('Error in DB')
-        return this.songs
-    }
-}
+export class SongsModule {}

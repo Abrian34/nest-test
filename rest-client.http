@@ -1,0 +1,16 @@
+
+POST http://localhost:3000/songs/
+
+{
+    "title": "test",
+    "artist": "test",
+    "releaseDate": "test",
+    "duration": "test",
+}
+
+GET http://localhost:3000/songs/1
+
+PUT http://localhost:3000/songs/1
+
+DELETE http://localhost:3000/songs/1
+

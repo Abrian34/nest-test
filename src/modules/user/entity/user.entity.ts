@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { Song } from "src/modules/songs/entity/songs.entity";
+import { Song } from "../../songs/entity/songs.entity";
 import { Column, Entity, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('users')
